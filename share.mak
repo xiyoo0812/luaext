@@ -10,7 +10,7 @@ LIBS= -lm $(MYLIBS) $(SYSLIBS)
 #定义系统的编译选项
 SYSCFLAGS= -Wno-unknown-pragmas
 SYSLDFLAGS=
-SYSLIBS=-ldl -lreadline
+SYSLIBS=-ldl
 
 #自定义的编译选项
 ifndef MYCFLAGS
