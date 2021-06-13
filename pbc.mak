@@ -4,7 +4,7 @@ PROJECT_NAME = pbc
 PROJECT_TYPE = lib
 
 #是否静态库，定义后生成.a文件，否则生成.so文件
-#_STATIC=
+#_LIB=1
 
 #目标文件前缀，不定义则.so和.a加lib前缀，否则不加
 PROJECT_NO_PREFIX=1
@@ -19,7 +19,7 @@ MYCFLAGS = -I../lua/lua
 MYLDFLAGS = 
 
 #share.mak包含了一些公用的库,这里加上其他所需的库
-MYLIBS =
+MYLIBS = -llua
 
 #源文件路径
 SRC_DIR=./pbc
