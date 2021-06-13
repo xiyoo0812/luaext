@@ -61,3 +61,4 @@ dkms.conf
 *.zip
 *.7z
 *.tar
+.DS_Store
