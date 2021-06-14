@@ -244,7 +244,9 @@ op_reply(lua_State *L) {
 			lua_rawseti(L, 2, i);
 
 			int32_t doc_len = get_length((const document)doc);
-
+			if (doc_len <= 0) {
+				return luaL_error(L, "Invalid result bson document");
+			}
 			doc += doc_len;
 			sz -= doc_len;
 
