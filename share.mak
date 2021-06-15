@@ -95,10 +95,16 @@ EXCLUDE_FILE=
 endif
 
 #若没有指定源文件列表则把 SRC_DIR 目录下的所有源文件作为要编译的文件列表
-ifndef MYOBJS
+ifdef ALL_OBJS
+CPPOBJS = $(patsubst $(SRC_DIR)/%.cpp, $(INT_DIR)/%.o, $(ALL_OBJS))
+CCOBJS = $(patsubst $(SRC_DIR)/%.cc, $(INT_DIR)/%.o, $(CPPOBJS))
+COBJS = $(patsubst $(SRC_DIR)/%.c, $(INT_DIR)/%.o, $(CCOBJS))
+MYOBJS = $(patsubst $(SRC_DIR)/%.m, $(INT_DIR)/%.o, $(COBJS))
+else
 MYOBJS = $(patsubst $(SRC_DIR)/%.cpp, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/*.cpp)))
 MYOBJS += $(patsubst $(SRC_DIR)/%.c, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/*.c)))
 MYOBJS += $(patsubst $(SRC_DIR)/%.cc, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/*.cc)))
+MYOBJS += $(patsubst $(SRC_DIR)/%.m, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/*.m)))
 endif
 
 #输出目标
@@ -122,11 +128,11 @@ endif
 # 编译所有源文件
 $(INT_DIR)/%.o : $(SRC_DIR)/%.cpp
 	$(CX) $(CXXFLAGS) -c $< -o $@
-	
 $(INT_DIR)/%.o : $(SRC_DIR)/%.cc
 	$(CX) $(CXXFLAGS) -c $< -o $@
-
 $(INT_DIR)/%.o : $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(INT_DIR)/%.o : $(SRC_DIR)/%.m
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #target伪目标

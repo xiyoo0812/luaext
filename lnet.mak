@@ -25,7 +25,7 @@ MYLIBS = -llua
 SRC_DIR=./lnet
 
 #目标文件，可以在这里定义，如果没有定义，share.mak会自动生成
-#MYOBJS=
+#ALL_OBJS=
 
 #需要排除的源文件
 #EXCLUDE_FILE=
