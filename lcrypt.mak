@@ -13,7 +13,7 @@ PROJECT_NO_PREFIX=1
 STDC_EX= -std=c++11
 
 # share.mak包含了一些编译选项，在这里可以添加新的选项和include目录
-MYCFLAGS = -I../lua/lua -I./lcrypt/quickzip
+MYCFLAGS = -I../lua/lua
 
 #share.mak包含了一些链接选项，在这里可以添加新的选项和lib目录
 MYLDFLAGS = 
@@ -37,7 +37,7 @@ MYOBJS += $(patsubst $(SRC_DIR)/quickzip/%.cpp, $(INT_DIR)/quickzip/%.o, $(wildc
 all : pre_build target post_build
 
 #通用规则
-include ../../share/share.mak
+include ./share.mak
 
 #预编译
 pre_build:

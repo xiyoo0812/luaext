@@ -1,8 +1,18 @@
-
+#if defined (__cplusplus)
+extern "C" {
+#endif
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
 #include "md5.h"
 #include "xxtea.h"
 #include "des56.h"
 #include "base64.h"
+#include <cstring>
+#if defined (__cplusplus)
+}
+#endif
+
 #include "quickzip/quick_zip.h"
 
 #define SMALL_CHUNK 256
@@ -19,14 +29,14 @@ static int lrandomkey(lua_State *L)
 	return 1;
 }
 
-static void hash(const char * str, int sz, uint8_t key[8])
+static void hash(const char * str, int sz, char key[8])
 {
-	uint32_t djb_hash = 5381L;
-	uint32_t js_hash = 1315423911L;
+	long djb_hash = 5381L;
+	long js_hash = 1315423911L;
 	int i;
 	for (i=0;i<sz;i++)
     {
-		uint8_t c = (uint8_t)str[i];
+		char c = (char)str[i];
 		djb_hash += (djb_hash << 5) + c;
 		js_hash ^= ((js_hash << 5) + c + (js_hash >> 2));
 	}
@@ -47,7 +57,7 @@ lhashkey(lua_State *L)
 {
 	size_t sz = 0;
 	const char * key = luaL_checklstring(L, 1, &sz);
-	uint8_t realkey[8];
+	char realkey[8];
 	hash(key,(int)sz,realkey);
 	lua_pushlstring(L, (const char *)realkey, 8);
 	return 1;
@@ -57,12 +67,12 @@ static int ltohex(lua_State *L)
 {
 	static char hex[] = "0123456789abcdef";
 	size_t sz = 0;
-	const uint8_t * text = (const uint8_t *)luaL_checklstring(L, 1, &sz);
+	const char * text = (const char *)luaL_checklstring(L, 1, &sz);
 	char tmp[SMALL_CHUNK];
 	char *buffer = tmp;
 	if (sz > SMALL_CHUNK/2)
     {
-		buffer = lua_newuserdata(L, sz * 2);
+		buffer = (char *)lua_newuserdata(L, sz * 2);
 	}
 	int i;
 	for (i=0;i<sz;i++)
@@ -86,11 +96,11 @@ static int lfromhex(lua_State *L)
 	char tmp[SMALL_CHUNK];
 	char *buffer = tmp;
 	if (sz > SMALL_CHUNK*2) {
-		buffer = lua_newuserdata(L, sz / 2);
+		buffer = (char *)lua_newuserdata(L, sz / 2);
 	}
 	int i;
 	for (i=0;i<sz;i+=2) {
-		uint8_t hi,low;
+		char hi,low;
 		HEX(hi, text[i]);
 		HEX(low, text[i+1]);
 		if (hi > 16 || low > 16) {
@@ -108,7 +118,7 @@ static int lxxtea_encode(lua_State* L)
     size_t encode_len = 0;
     const char* key = luaL_checkstring(L, 1);
     const char* message = luaL_checklstring(L, 2, &data_len);
-    char* encode_out = xxtea_encrypt(message, data_len, key, &encode_out);
+    char* encode_out = (char *)xxtea_encrypt(message, data_len, key, &encode_len);
     lua_pushlstring(L, encode_out, encode_len);
     free(encode_out);
     return 1;
@@ -120,7 +130,7 @@ static int lxxtea_decode(lua_State* L)
     size_t decode_len = 0;
     const char* key = luaL_checkstring(L, 1);
     const char* message = luaL_checklstring(L, 2, &data_len);
-    char* decode_out = xxtea_decrypt(message, data_len, key, &decode_out);
+    char* decode_out = (char *)xxtea_decrypt(message, data_len, key, &decode_len);
     lua_pushlstring(L, decode_out, decode_len);
     free(decode_out);
     return 1;
@@ -130,8 +140,8 @@ static int lbase64_encode(lua_State* L)
 {
     size_t data_len = 0;
     const char* message = luaL_checklstring(L, 1, &data_len);
-    char* encode_out = malloc(BASE64_ENCODE_OUT_SIZE(data_len));
-    unsigned int encode_len = base64_encode(message, data_len, encode_out);
+    char* encode_out =  (char *)malloc(BASE64_ENCODE_OUT_SIZE(data_len));
+    unsigned int encode_len = base64_encode((const unsigned char*)message, data_len, encode_out);
     lua_pushlstring(L, encode_out, encode_len);
     free(encode_out);
     return 1;
@@ -141,30 +151,10 @@ static int lbase64_decode(lua_State* L)
 {
     size_t data_len = 0;
     const char* message = luaL_checklstring(L, 1, &data_len);
-    unsigned char* decode_out = malloc(BASE64_DECODE_OUT_SIZE(data_len));
+    unsigned char* decode_out = (unsigned char*)malloc(BASE64_DECODE_OUT_SIZE(data_len));
     unsigned int decode_len = base64_decode((char*)message, data_len, decode_out);
-    lua_pushlstring(L, decode_out, decode_len);
+    lua_pushlstring(L, (const char*)decode_out, decode_len);
     free(decode_out);
-    return 1;
-}
-
-static int lquick_zip(lua_State* L)
-{
-    QuickZip zip;
-    size_t data_len = 0;
-    const char* message = luaL_checklstring(L, 1, &data_len);
-    ByteContainer zip_bytes = zip.Zip((char*)message, data_len);
-    lua_pushlstring(L, zip_bytes.buffer, zip_bytes.size);
-    return 1;
-}
-
-static int lquick_unzip(lua_State* L)
-{
-    QuickZip zip;
-    size_t data_len = 0;
-    const char* message = luaL_checklstring(L, 1, &data_len);
-    ByteContainer unzip_bytes = zip.Unzip((char*)message, data_len);
-    lua_pushlstring(L, unzip_bytes.buffer, unzip_bytes.size);
     return 1;
 }
 
@@ -205,7 +195,8 @@ static int des56_decrypt( lua_State *L )
     }
     else
     {
-        lua_error(L, "Error decrypting file. Invalid key.");
+        lua_pushstring(L, "Error decrypting file. Invalid key.");
+        lua_error(L);
     }
     rel_index = 0;
     abs_index = 0;
@@ -246,7 +237,8 @@ static int des56_crypt( lua_State *L )
     }
     else
     {
-        lua_error(L, "Error encrypting file. Invalid key.");
+        lua_pushstring(L, "Error encrypting file. Invalid key.");
+        lua_error(L);
     }
 
     rel_index = 0;
@@ -280,13 +272,33 @@ static int des56_crypt( lua_State *L )
     return 1;
 }
 
+static int lquick_zip(lua_State* L)
+{
+    QuickZip zip;
+    size_t data_len = 0;
+    const char* message = luaL_checklstring(L, 1, &data_len);
+    ByteContainer zip_bytes = zip.Zip((char*)message, data_len);
+    lua_pushlstring(L, zip_bytes.buffer, zip_bytes.size);
+    return 1;
+}
+
+static int lquick_unzip(lua_State* L)
+{
+    QuickZip zip;
+    size_t data_len = 0;
+    const char* message = luaL_checklstring(L, 1, &data_len);
+    ByteContainer unzip_bytes = zip.Unzip((char*)message, data_len);
+    lua_pushlstring(L, unzip_bytes.buffer, unzip_bytes.size);
+    return 1;
+}
+
 #ifdef _MSC_VER
 #define LUACRYPT_API _declspec(dllexport)
 #else
 #define LUACRYPT_API
 #endif
 
-LUACRYPT_API int luaopen_crypt(lua_State* L)
+LUACRYPT_API extern "C" int luaopen_crypt(lua_State* L)
 {
     luaL_checkversion(L);
 
