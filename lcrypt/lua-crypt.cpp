@@ -1,17 +1,14 @@
-#if defined (__cplusplus)
-extern "C" {
-#endif
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-#include "md5.h"
-#include "xxtea.h"
-#include "des56.h"
-#include "base64.h"
-#include <cstring>
-#if defined (__cplusplus)
+extern "C" 
+{
+    #include "lua.h"
+    #include "lauxlib.h"
+    #include "lualib.h"
+    #include "md5.h"
+    #include "xxtea.h"
+    #include "des56.h"
+    #include "base64.h"
+    #include <cstring>
 }
-#endif
 
 #include "quickzip/quick_zip.h"
 
@@ -23,7 +20,7 @@ static int lrandomkey(lua_State *L)
 	int i;
 	for (i=0;i<8;i++)
     {
-		tmp[i] = random() & 0xff;
+		tmp[i] = rand() & 0xff;
 	}
 	lua_pushlstring(L, tmp, 8);
 	return 1;

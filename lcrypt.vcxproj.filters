@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="quickzip">
+      <UniqueIdentifier>{71718d73-a7eb-44f7-bdaa-ff1997d68d8e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lcrypt\quickzip\byte_counter.cpp">
+      <Filter>quickzip</Filter>
+    </ClCompile>
+    <ClCompile Include="lcrypt\quickzip\huffman_tree.cpp">
+      <Filter>quickzip</Filter>
+    </ClCompile>
+    <ClCompile Include="lcrypt\quickzip\quick_zip.cpp">
+      <Filter>quickzip</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lcrypt\quickzip\byte_counter.h">
+      <Filter>quickzip</Filter>
+    </ClInclude>
+    <ClInclude Include="lcrypt\quickzip\huffman_tree.h">
+      <Filter>quickzip</Filter>
+    </ClInclude>
+    <ClInclude Include="lcrypt\quickzip\quick_zip.h">
+      <Filter>quickzip</Filter>
+    </ClInclude>
+    <ClInclude Include="lcrypt\quickzip\quick_zip_types.h">
+      <Filter>quickzip</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
