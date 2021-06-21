@@ -4,6 +4,7 @@ extern "C"
     #include "lauxlib.h"
     #include "lualib.h"
     #include "md5.h"
+    #include "sha1.h"
     #include "xxtea.h"
     #include "des56.h"
     #include "base64.h"
@@ -289,6 +290,58 @@ static int lquick_unzip(lua_State* L)
     return 1;
 }
 
+static int lsha1(lua_State* L)
+{
+    size_t sz = 0;
+	const uint8_t* buffer = (const uint8_t*)luaL_checklstring(L, 1, &sz);
+	uint8_t digest[SHA1_DIGEST_SIZE];
+	SHA1_CTX ctx;
+	sat_SHA1_Init(&ctx);
+	sat_SHA1_Update(&ctx, buffer, sz);
+	sat_SHA1_Final(&ctx, digest);
+	lua_pushlstring(L, (const char*)digest, SHA1_DIGEST_SIZE);
+	return 1;
+}
+
+static int lhmac_sha1(lua_State *L)
+{
+	size_t key_sz = 0;
+	const uint8_t* key = (const uint8_t*)luaL_checklstring(L, 1, &key_sz);
+	size_t text_sz = 0;
+	const uint8_t* text = (const uint8_t*)luaL_checklstring(L, 2, &text_sz);
+	SHA1_CTX ctx1, ctx2;
+	uint8_t digest1[SHA1_DIGEST_SIZE];
+	uint8_t digest2[SHA1_DIGEST_SIZE];
+	uint8_t rkey[SHA_BLOCKSIZE];
+	memset(rkey, 0, SHA_BLOCKSIZE);
+
+	if (key_sz > SHA_BLOCKSIZE) 
+    {
+		SHA1_CTX ctx;
+		sat_SHA1_Init(&ctx);
+		sat_SHA1_Update(&ctx, key, key_sz);
+		sat_SHA1_Final(&ctx, rkey);
+		key_sz = SHA1_DIGEST_SIZE;
+	}
+    else 
+    {
+		memcpy(rkey, key, key_sz);
+	}
+	xor_key(rkey, 0x5c5c5c5c);
+	sat_SHA1_Init(&ctx1);
+	sat_SHA1_Update(&ctx1, rkey, SHA_BLOCKSIZE);
+	xor_key(rkey, 0x5c5c5c5c ^ 0x36363636);
+	sat_SHA1_Init(&ctx2);
+	sat_SHA1_Update(&ctx2, rkey, SHA_BLOCKSIZE);
+	sat_SHA1_Update(&ctx2, text, text_sz);
+	sat_SHA1_Final(&ctx2, digest2);
+	sat_SHA1_Update(&ctx1, digest2, SHA1_DIGEST_SIZE);
+	sat_SHA1_Final(&ctx1, digest1);
+	lua_pushlstring(L, (const char *)digest1, SHA1_DIGEST_SIZE);
+	return 1;
+}
+
+
 #ifdef _MSC_VER
 #define LUACRYPT_API _declspec(dllexport)
 #else
@@ -301,6 +354,8 @@ LUACRYPT_API extern "C" int luaopen_crypt(lua_State* L)
 
     luaL_Reg l[] = {
         { "md5", lmd5 },
+        { "sha1", lsha1 },
+		{ "hmac_sha1", lhmac_sha1 },
         { "hashkey", lhashkey },
 		{ "randomkey", lrandomkey },
         { "hex_encode", ltohex },
