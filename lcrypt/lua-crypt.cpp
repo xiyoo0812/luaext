@@ -1,4 +1,4 @@
-extern "C" 
+extern "C"
 {
     #include "lua.h"
     #include "lauxlib.h"
@@ -88,20 +88,24 @@ static int lfromhex(lua_State *L)
 {
 	size_t sz = 0;
 	const char * text = luaL_checklstring(L, 1, &sz);
-	if (sz & 2) {
+	if (sz & 2)
+    {
 		return luaL_error(L, "Invalid hex text size %d", (int)sz);
 	}
 	char tmp[SMALL_CHUNK];
 	char *buffer = tmp;
-	if (sz > SMALL_CHUNK*2) {
+	if (sz > SMALL_CHUNK*2)
+    {
 		buffer = (char *)lua_newuserdata(L, sz / 2);
 	}
 	int i;
-	for (i=0;i<sz;i+=2) {
+	for (i=0;i<sz;i+=2)
+    {
 		char hi,low;
 		HEX(hi, text[i]);
 		HEX(low, text[i+1]);
-		if (hi > 16 || low > 16) {
+		if (hi > 16 || low > 16)
+        {
 			return luaL_error(L, "Invalid hex text", text);
 		}
 		buffer[i/2] = hi<<4 | low;
@@ -241,12 +245,12 @@ static int des56_crypt( lua_State *L )
 
     rel_index = 0;
     abs_index = 0;
-    while (abs_index < (int) plainlen) 
+    while (abs_index < (int) plainlen)
     {
         cypheredText[abs_index] = plainText[abs_index];
         abs_index++;
         rel_index++;
-        if( rel_index == 8 ) 
+        if( rel_index == 8 )
         {
             rel_index = 0;
             fencrypt(&(cypheredText[abs_index - 8]), 0, &KS);
@@ -254,7 +258,7 @@ static int des56_crypt( lua_State *L )
     }
 
     pad = 0;
-    if(rel_index != 0) 
+    if(rel_index != 0)
     { /* Pads remaining bytes with zeroes */
         while(rel_index < 8)
         {
@@ -296,11 +300,21 @@ static int lsha1(lua_State* L)
 	const uint8_t* buffer = (const uint8_t*)luaL_checklstring(L, 1, &sz);
 	uint8_t digest[SHA1_DIGEST_SIZE];
 	SHA1_CTX ctx;
-	sat_SHA1_Init(&ctx);
-	sat_SHA1_Update(&ctx, buffer, sz);
-	sat_SHA1_Final(&ctx, digest);
+	SHA1_Init(&ctx);
+	SHA1_Update(&ctx, buffer, sz);
+	SHA1_Final(digest, &ctx);
 	lua_pushlstring(L, (const char*)digest, SHA1_DIGEST_SIZE);
 	return 1;
+}
+
+static inline void xor_key(uint8_t key[SHA_BLOCKSIZE], uint32_t xorv)
+{
+	int i;
+	for (i=0;i<SHA_BLOCKSIZE;i+=sizeof(uint32_t)) 
+    {
+		uint32_t * k = (uint32_t*)&key[i];
+		*k ^= xorv;
+	}
 }
 
 static int lhmac_sha1(lua_State *L)
@@ -315,28 +329,28 @@ static int lhmac_sha1(lua_State *L)
 	uint8_t rkey[SHA_BLOCKSIZE];
 	memset(rkey, 0, SHA_BLOCKSIZE);
 
-	if (key_sz > SHA_BLOCKSIZE) 
+	if (key_sz > SHA_BLOCKSIZE)
     {
 		SHA1_CTX ctx;
-		sat_SHA1_Init(&ctx);
-		sat_SHA1_Update(&ctx, key, key_sz);
-		sat_SHA1_Final(&ctx, rkey);
+		SHA1_Init(&ctx);
+		SHA1_Update(&ctx, key, key_sz);
+		SHA1_Final(rkey, &ctx);
 		key_sz = SHA1_DIGEST_SIZE;
 	}
-    else 
+    else
     {
 		memcpy(rkey, key, key_sz);
 	}
 	xor_key(rkey, 0x5c5c5c5c);
-	sat_SHA1_Init(&ctx1);
-	sat_SHA1_Update(&ctx1, rkey, SHA_BLOCKSIZE);
+	SHA1_Init(&ctx1);
+	SHA1_Update(&ctx1, rkey, SHA_BLOCKSIZE);
 	xor_key(rkey, 0x5c5c5c5c ^ 0x36363636);
-	sat_SHA1_Init(&ctx2);
-	sat_SHA1_Update(&ctx2, rkey, SHA_BLOCKSIZE);
-	sat_SHA1_Update(&ctx2, text, text_sz);
-	sat_SHA1_Final(&ctx2, digest2);
-	sat_SHA1_Update(&ctx1, digest2, SHA1_DIGEST_SIZE);
-	sat_SHA1_Final(&ctx1, digest1);
+	SHA1_Init(&ctx2);
+	SHA1_Update(&ctx2, rkey, SHA_BLOCKSIZE);
+	SHA1_Update(&ctx2, text, text_sz);
+	SHA1_Final(digest2, &ctx2);
+	SHA1_Update(&ctx1, digest2, SHA1_DIGEST_SIZE);
+	SHA1_Final(digest1, &ctx1);
 	lua_pushlstring(L, (const char *)digest1, SHA1_DIGEST_SIZE);
 	return 1;
 }
