@@ -22,7 +22,7 @@ MYLDFLAGS =
 MYLIBS = -llua
 
 #源文件路径
-SRC_DIR=./pbc
+SRC_DIR = ./pbc
 
 #目标文件，可以在这里定义，如果没有定义，share.mak会自动生成
 #ALL_OBJS=

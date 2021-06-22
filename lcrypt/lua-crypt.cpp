@@ -11,7 +11,12 @@ extern "C"
     #include <cstring>
 }
 
+
 #include "quickzip/quick_zip.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define SMALL_CHUNK 256
 
@@ -357,12 +362,12 @@ static int lhmac_sha1(lua_State *L)
 
 
 #ifdef _MSC_VER
-#define LUACRYPT_API extern "C" _declspec(dllexport)
+#define LUACRYPT_API _declspec(dllexport)
 #else
-#define LUACRYPT_API
+#define LUACRYPT_API extern
 #endif
 
-LUACRYPT_API int luaopen_crypt(lua_State* L)
+LUACRYPT_API int luaopen_lcrypt(lua_State* L)
 {
     luaL_checkversion(L);
 
@@ -389,3 +394,7 @@ LUACRYPT_API int luaopen_crypt(lua_State* L)
 
     return 1;
 }
+
+#ifdef __cplusplus
+}
+#endif

@@ -22,7 +22,7 @@ MYLDFLAGS =
 MYLIBS = -llua
 
 #源文件路径
-SRC_DIR= ./lcrypt
+SRC_DIR = ./lcrypt
 
 #需要排除的源文件
 #EXCLUDE_FILE=

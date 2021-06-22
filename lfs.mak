@@ -13,7 +13,7 @@ PROJECT_NO_PREFIX=1
 STDC_EX= -std=gnu99
 
 # share.mak包含了一些编译选项，在这里可以添加新的选项和include目录
-MYCFLAGS = -I../lua/src
+MYCFLAGS = -I../lua/lua
 
 #share.mak包含了一些链接选项，在这里可以添加新的选项和lib目录
 MYLDFLAGS = -llua
@@ -22,7 +22,7 @@ MYLDFLAGS = -llua
 MYLIBS =
 
 #源文件路径
-#SRC_DIR= ./src
+SRC_DIR = ./lfs
 
 #目标文件，可以在这里定义，如果没有定义，share.mak会自动生成
 #ALL_OBJS=
