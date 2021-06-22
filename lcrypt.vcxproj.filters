@@ -15,6 +15,12 @@
     <ClCompile Include="lcrypt\quickzip\quick_zip.cpp">
       <Filter>quickzip</Filter>
     </ClCompile>
+    <ClCompile Include="lcrypt\base64.c" />
+    <ClCompile Include="lcrypt\des56.c" />
+    <ClCompile Include="lcrypt\lua-crypt.cpp" />
+    <ClCompile Include="lcrypt\md5.c" />
+    <ClCompile Include="lcrypt\xxtea.c" />
+    <ClCompile Include="lcrypt\sha1.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lcrypt\quickzip\byte_counter.h">
@@ -29,5 +35,10 @@
     <ClInclude Include="lcrypt\quickzip\quick_zip_types.h">
       <Filter>quickzip</Filter>
     </ClInclude>
+    <ClInclude Include="lcrypt\base64.h" />
+    <ClInclude Include="lcrypt\des56.h" />
+    <ClInclude Include="lcrypt\md5.h" />
+    <ClInclude Include="lcrypt\xxtea.h" />
+    <ClInclude Include="lcrypt\sha1.h" />
   </ItemGroup>
 </Project>

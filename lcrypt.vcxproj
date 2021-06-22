@@ -18,6 +18,7 @@
     <ClCompile Include="lcrypt\quickzip\byte_counter.cpp" />
     <ClCompile Include="lcrypt\quickzip\huffman_tree.cpp" />
     <ClCompile Include="lcrypt\quickzip\quick_zip.cpp" />
+    <ClCompile Include="lcrypt\sha1.c" />
     <ClCompile Include="lcrypt\xxtea.c" />
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +29,7 @@
     <ClInclude Include="lcrypt\quickzip\huffman_tree.h" />
     <ClInclude Include="lcrypt\quickzip\quick_zip.h" />
     <ClInclude Include="lcrypt\quickzip\quick_zip_types.h" />
+    <ClInclude Include="lcrypt\sha1.h" />
     <ClInclude Include="lcrypt\xxtea.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

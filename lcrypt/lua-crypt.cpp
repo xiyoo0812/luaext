@@ -357,12 +357,12 @@ static int lhmac_sha1(lua_State *L)
 
 
 #ifdef _MSC_VER
-#define LUACRYPT_API _declspec(dllexport)
+#define LUACRYPT_API extern "C" _declspec(dllexport)
 #else
 #define LUACRYPT_API
 #endif
 
-LUACRYPT_API extern "C" int luaopen_crypt(lua_State* L)
+LUACRYPT_API int luaopen_crypt(lua_State* L)
 {
     luaL_checkversion(L);
 

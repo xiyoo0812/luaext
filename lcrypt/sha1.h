@@ -5,7 +5,8 @@
 */
 
 #ifndef SHA_H_
-#define SHA_H_ (1)
+#define SHA_H_
+#include <stdint.h>
 
 #define SHA_BLOCKSIZE   (64)
 
