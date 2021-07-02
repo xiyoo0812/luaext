@@ -11,40 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pbc\alloc.c" />
-    <ClCompile Include="pbc\array.c" />
-    <ClCompile Include="pbc\bootstrap.c" />
-    <ClCompile Include="pbc\context.c" />
-    <ClCompile Include="pbc\decode.c" />
-    <ClCompile Include="pbc\map.c" />
-    <ClCompile Include="pbc\pattern.c" />
-    <ClCompile Include="pbc\pbc-lua.c" />
-    <ClCompile Include="pbc\proto.c" />
-    <ClCompile Include="pbc\register.c" />
-    <ClCompile Include="pbc\rmessage.c" />
-    <ClCompile Include="pbc\stringpool.c" />
-    <ClCompile Include="pbc\varint.c" />
-    <ClCompile Include="pbc\wmessage.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="pbc\alloc.h" />
-    <ClInclude Include="pbc\array.h" />
-    <ClInclude Include="pbc\bootstrap.h" />
-    <ClInclude Include="pbc\context.h" />
-    <ClInclude Include="pbc\descriptor.pbc.h" />
-    <ClInclude Include="pbc\map.h" />
-    <ClInclude Include="pbc\pattern.h" />
-    <ClInclude Include="pbc\pbc.h" />
-    <ClInclude Include="pbc\proto.h" />
-    <ClInclude Include="pbc\stringpool.h" />
-    <ClInclude Include="pbc\varint.h" />
+    <ClCompile Include="src\lua-mongo.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{072B788A-F4A1-4FB5-83F0-633A4FE5DB5E}</ProjectGuid>
-    <RootNamespace>pbc</RootNamespace>
+    <ProjectGuid>{954AC35E-1774-47FF-ADF1-5F65E97FB615}</ProjectGuid>
+    <RootNamespace>mongo</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>pbc</ProjectName>
+    <ProjectName>mongo</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'" Label="Configuration">
@@ -96,7 +70,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
@@ -126,7 +100,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>

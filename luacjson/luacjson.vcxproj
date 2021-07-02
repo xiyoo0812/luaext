@@ -11,17 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lnet\lnet.c" />
-    <ClCompile Include="lnet\poll_win32.c" />
-    <ClCompile Include="lnet\socket.c" />
+    <ClCompile Include="src\fpconv.c" />
+    <ClCompile Include="src\lua_cjson.c" />
+    <ClCompile Include="src\strbuf.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lnet\poll.h" />
-    <ClInclude Include="lnet\socket.h" />
+    <ClInclude Include="src\fpconv.h" />
+    <ClInclude Include="src\strbuf.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{623A966A-1F99-450C-8BE1-D17F3FE84620}</ProjectGuid>
-    <RootNamespace>lnet</RootNamespace>
+    <ProjectGuid>{47B1F51B-70AA-4C21-993D-66BA5B831C67}</ProjectGuid>
+    <RootNamespace>luacjson</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

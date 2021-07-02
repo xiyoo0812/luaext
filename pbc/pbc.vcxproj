@@ -11,19 +11,40 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="luacjson\fpconv.c" />
-    <ClCompile Include="luacjson\lua_cjson.c" />
-    <ClCompile Include="luacjson\strbuf.c" />
+    <ClCompile Include="src\alloc.c" />
+    <ClCompile Include="src\array.c" />
+    <ClCompile Include="src\bootstrap.c" />
+    <ClCompile Include="src\context.c" />
+    <ClCompile Include="src\decode.c" />
+    <ClCompile Include="src\map.c" />
+    <ClCompile Include="src\pattern.c" />
+    <ClCompile Include="src\pbc-lua.c" />
+    <ClCompile Include="src\proto.c" />
+    <ClCompile Include="src\register.c" />
+    <ClCompile Include="src\rmessage.c" />
+    <ClCompile Include="src\stringpool.c" />
+    <ClCompile Include="src\varint.c" />
+    <ClCompile Include="src\wmessage.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="luacjson\fpconv.h" />
-    <ClInclude Include="luacjson\strbuf.h" />
+    <ClInclude Include="src\alloc.h" />
+    <ClInclude Include="src\array.h" />
+    <ClInclude Include="src\bootstrap.h" />
+    <ClInclude Include="src\context.h" />
+    <ClInclude Include="src\descriptor.pbc.h" />
+    <ClInclude Include="src\map.h" />
+    <ClInclude Include="src\pattern.h" />
+    <ClInclude Include="src\pbc.h" />
+    <ClInclude Include="src\proto.h" />
+    <ClInclude Include="src\stringpool.h" />
+    <ClInclude Include="src\varint.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{47B1F51B-70AA-4C21-993D-66BA5B831C67}</ProjectGuid>
-    <RootNamespace>luacjson</RootNamespace>
+    <ProjectGuid>{072B788A-F4A1-4FB5-83F0-633A4FE5DB5E}</ProjectGuid>
+    <RootNamespace>pbc</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>pbc</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'" Label="Configuration">
@@ -75,6 +96,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
@@ -104,6 +126,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>

@@ -1,5 +1,5 @@
 #工程名字
-PROJECT_NAME = mongo
+PROJECT_NAME = pbc
 #工程类型，可以是库(lib)或可执行程序(exe)
 PROJECT_TYPE = lib
 
@@ -10,19 +10,19 @@ PROJECT_TYPE = lib
 PROJECT_NO_PREFIX=1
 
 #c99
-STDC_EX= -std=gnu99
+#STDC_EX= -std=gnu99
 
 # share.mak包含了一些编译选项，在这里可以添加新的选项和include目录
 MYCFLAGS = -I../lua/lua
 
 #share.mak包含了一些链接选项，在这里可以添加新的选项和lib目录
-MYLDFLAGS = -llua
+MYLDFLAGS = 
 
 #share.mak包含了一些公用的库,这里加上其他所需的库
-MYLIBS =
+MYLIBS = -llua
 
 #源文件路径
-SRC_DIR = ./mongo
+#SRC_DIR = 
 
 #目标文件，可以在这里定义，如果没有定义，share.mak会自动生成
 #ALL_OBJS=

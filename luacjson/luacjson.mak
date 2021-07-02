@@ -1,5 +1,5 @@
 #工程名字
-PROJECT_NAME = lpeg
+PROJECT_NAME = luacjson
 #工程类型，可以是库(lib)或可执行程序(exe)
 PROJECT_TYPE = lib
 
@@ -22,7 +22,7 @@ MYLDFLAGS =
 MYLIBS = -llua
 
 #源文件路径
-SRC_DIR = ./lpeg
+#SRC_DIR = 
 
 #目标文件，可以在这里定义，如果没有定义，share.mak会自动生成
 #ALL_OBJS=

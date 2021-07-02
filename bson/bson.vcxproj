@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bson\bson.c" />
+    <ClCompile Include="src\bson.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D006D7B6-1807-4BD4-BF1A-9510B170DFE5}</ProjectGuid>

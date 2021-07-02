@@ -1,9 +1,12 @@
 [submodule "lua"]
 	path = lua
-	url = https://github.com/xiyoo0812/lua
+	url = https://github.com/xiyoo0812/lua.git
 [submodule "lualog"]
 	path = lualog
-	url = https://github.com/xiyoo0812/lualog
+	url = https://github.com/xiyoo0812/lualog.git
 [submodule "luaxlsx"]
 	path = luaxlsx
-	url = https://github.com/xiyoo0812/luaxlsx
+	url = https://github.com/xiyoo0812/luaxlsx.git
+[submodule "lcrypt"]
+	path = lcrypt
+	url = https://github.com/xiyoo0812/lcrypt.git

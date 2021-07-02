@@ -62,3 +62,12 @@ dkms.conf
 *.7z
 *.tar
 .DS_Store
+
+#ignore this dir##
+.vs
+.vscode
+temp
+
+#ignore this exe##
+bin/lua
+bin/luac
