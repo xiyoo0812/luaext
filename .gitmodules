@@ -1,0 +1,9 @@
+[submodule "lua"]
+	path = lua
+	url = https://github.com/xiyoo0812/lua
+[submodule "lualog"]
+	path = lualog
+	url = https://github.com/xiyoo0812/lualog
+[submodule "luaxlsx"]
+	path = luaxlsx
+	url = https://github.com/xiyoo0812/luaxlsx
