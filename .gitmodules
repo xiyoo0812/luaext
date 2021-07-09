@@ -10,3 +10,6 @@
 [submodule "lcrypt"]
 	path = lcrypt
 	url = https://github.com/xiyoo0812/lcrypt.git
+[submodule "lshare"]
+	path = lshare
+	url = https://github.com/xiyoo0812/lshare.git
