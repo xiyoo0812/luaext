@@ -7,9 +7,6 @@
 [submodule "lcrypt"]
 	path = lcrypt
 	url = https://github.com/xiyoo0812/lcrypt.git
-[submodule "lshare"]
-	path = lshare
-	url = https://github.com/xiyoo0812/lshare.git
 [submodule "lua/lua"]
 	path = lua/lua
 	url = https://github.com/xiyoo0812/lua.git
