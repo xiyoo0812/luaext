@@ -31,3 +31,4 @@ ext:
 	cd luacjson; make SOLUTION_DIR=$(CUR_DIR) -f luacjson.mak;
 	cd lualog; make SOLUTION_DIR=$(CUR_DIR) -f lualog.mak;
 	cd luaxlsx; make SOLUTION_DIR=$(CUR_DIR) -f luaxlsx.mak;
+	cd luahttp; make SOLUTION_DIR=$(CUR_DIR) -f luahttp.mak;
