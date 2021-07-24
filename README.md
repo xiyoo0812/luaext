@@ -15,7 +15,7 @@
 - bson
 - lnet
 - mongo
-- luacjson
+- lcjson
 - lshare
 - lcrppt
 - lualog
