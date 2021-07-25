@@ -143,7 +143,7 @@ static int lcreate(lua_State* L) {
     return 1;
 }
 
-static int lrelease(lua_State* L) {
+static int lclose(lua_State* L) {
     struct timer* t = lua_touserdata(L, 1);
     timer_destory(t);
     return 0;
@@ -192,9 +192,7 @@ static int lupdate(lua_State* L) {
         timer_shift(T);
         timer_execute(L, T, &n);
     }
-    lua_pushinteger(L, n);
-    lua_pushinteger(L, elapse);
-    return 2;
+    return 0;
 }
 
 #ifdef _MSC_VER
@@ -207,7 +205,7 @@ LTIMER_API int luaopen_ltimer(lua_State* L) {
     luaL_checkversion(L);
     luaL_Reg l[] = {
         { "create", lcreate },
-        { "release", lrelease },
+        { "close", lclose },
         { "insert" , linsert },
         { "update", lupdate },
         { NULL, NULL },
