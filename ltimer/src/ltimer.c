@@ -137,10 +137,25 @@ static void timer_destory(struct timer* T) {
     }
 }
 
-static int lcreate(lua_State* L) {
-    struct timer* t = lua_newuserdata(L, sizeof(struct timer));
-    timer_init(t);
-    return 1;
+static inline void dispatch_list(lua_State* L, struct timer_node* current, int* n) {
+    do {
+        struct timer_node* temp = current;
+        current = current->next;
+        // todo: if rawseti raise (memory) error, cause memory leak
+        ++* n;
+        lua_pushinteger(L, temp->timer_id);
+        lua_rawseti(L, -2, *n);
+
+        free(temp);
+    } while (current);
+}
+
+static void timer_execute(lua_State* L, struct timer* T, int* n) {
+    int idx = T->time & TIME_NEAR_MASK;
+    while (T->near[idx].head.next) {
+        struct timer_node* current = link_clear(&T->near[idx]);
+        dispatch_list(L, current, n);
+    }
 }
 
 static int lclose(lua_State* L) {
@@ -155,27 +170,6 @@ static int linsert(lua_State* L) {
     int time = luaL_checkinteger(L, 3);
     timer_add(T, timer_id, time);
     return 0;
-}
-
-static inline void dispatch_list(lua_State* L, struct timer_node* current, int* n) {
-    do {
-        struct timer_node* temp = current;
-        current = current->next;
-        // todo: if rawseti raise (memory) error, cause memory leak
-        ++ *n;
-        lua_pushinteger(L, temp->timer_id);
-        lua_rawseti(L, -2, *n);
-
-        free(temp);
-    } while (current);
-}
-
-static void timer_execute(lua_State* L, struct timer* T, int* n) {
-    int idx = T->time & TIME_NEAR_MASK;
-    while (T->near[idx].head.next) {
-        struct timer_node* current = link_clear(&T->near[idx]);
-        dispatch_list(L, current, n);
-    }
 }
 
 static int lupdate(lua_State* L) {
@@ -195,6 +189,22 @@ static int lupdate(lua_State* L) {
     return 0;
 }
 
+static int lcreate(lua_State* L) {
+    struct timer* t = lua_newuserdata(L, sizeof(struct timer));
+    timer_init(t);
+    lua_newtable(L);
+    luaL_Reg l[] = {
+        { "close", lclose },
+        { "insert" , linsert },
+        { "update", lupdate },
+        { NULL, NULL }
+    };
+    luaL_newlib(L, l);
+    lua_setfield(L, -2, "__index");
+    lua_setmetatable(L, -2);
+    return 1;
+}
+
 #ifdef _MSC_VER
 #define LTIMER_API _declspec(dllexport)
 #else
@@ -205,9 +215,6 @@ LTIMER_API int luaopen_ltimer(lua_State* L) {
     luaL_checkversion(L);
     luaL_Reg l[] = {
         { "create", lcreate },
-        { "close", lclose },
-        { "insert" , linsert },
-        { "update", lupdate },
         { NULL, NULL },
     };
     luaL_newlib(L, l);
