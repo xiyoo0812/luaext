@@ -39,7 +39,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mongo", "mongo\mongo.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pbc", "pbc\pbc.vcxproj", "{072B788A-F4A1-4FB5-83F0-633A4FE5DB5E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luahttp", "luahttp\luahttp.vcxproj", "{F582EF81-3D4F-4276-B63A-87863FAA483C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lhttp", "lhttp\lhttp.vcxproj", "{F582EF81-3D4F-4276-B63A-87863FAA483C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ltimer", "ltimer\ltimer.vcxproj", "{6E4BA694-DA12-40AF-9597-E54E12BED096}"
 EndProject

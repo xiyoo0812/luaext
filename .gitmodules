@@ -10,6 +10,10 @@
 [submodule "lua/lua"]
 	path = lua/lua
 	url = https://github.com/xiyoo0812/lua.git
-[submodule "luahttp"]
-	path = luahttp
-	url = https://github.com/xiyoo0812/luahttp.git
+
+[submodule "lhttp"]
+
+	path = lhttp
+
+	url = https://github.com/xiyoo0812/lhttp.git
+
