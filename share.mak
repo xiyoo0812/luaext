@@ -27,6 +27,7 @@ endif
 #STDC_EX = -std=c++11/-std=gnu99
 ifdef STDC_EX
 CXXFLAGS += $(STDC_EX)
+CFLAGS += $(STDC_EX)
 endif
 
 MYLIBS += -lstdc++
