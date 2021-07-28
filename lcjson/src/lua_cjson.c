@@ -1448,7 +1448,7 @@ static int lua_cjson_safe_new(lua_State *l)
     return 1;
 }
 
-LUACJSON_API int luaopen_luacjson(lua_State *l)
+LUACJSON_API int luaopen_lcjson(lua_State *l)
 {
     lua_cjson_new(l);
 
@@ -1462,7 +1462,7 @@ LUACJSON_API int luaopen_luacjson(lua_State *l)
     return 1;
 }
 
-LUACJSON_API int luaopen_luacjson_safe(lua_State *l)
+LUACJSON_API int luaopen_lcjson_safe(lua_State *l)
 {
     lua_cjson_safe_new(l);
 
