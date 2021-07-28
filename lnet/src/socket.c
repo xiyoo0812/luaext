@@ -227,6 +227,8 @@ C_API int socket_accept(int fd, char *ip_buf, int *p_port)
 		return -1;
 	}
 
+	int on = 1;
+	ioctl(new_fd, FIONBIO, &on);
 	copy_ip_out(&tAddr, ip_buf, p_port);
 
 	return new_fd;

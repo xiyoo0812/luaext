@@ -2,8 +2,8 @@
 #定义基础的编译选项
 CC= gcc
 CX= c++
-CFLAGS= -O2 -Wall -Wno-deprecated -Wextra $(SYSCFLAGS) $(MYCFLAGS)
-CXXFLAGS= -O2 -Wall -Wno-deprecated -Wextra $(SYSCFLAGS) $(MYCFLAGS)
+CFLAGS= -g -O2 -Wall -Wno-deprecated -Wextra $(SYSCFLAGS) $(MYCFLAGS)
+CXXFLAGS= -g -O2 -Wall -Wno-deprecated -Wextra $(SYSCFLAGS) $(MYCFLAGS)
 LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
 LIBS= -lm $(MYLIBS) $(SYSLIBS) 
 
