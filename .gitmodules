@@ -17,3 +17,6 @@
 
 	url = https://github.com/xiyoo0812/lhttp.git
 
+[submodule "lcurl"]
+	path = lcurl
+	url = https://github.com/xiyoo0812/lcurl.git
