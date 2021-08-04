@@ -28,6 +28,7 @@ ext:
 	cd lnet; make SOLUTION_DIR=$(CUR_DIR) -f lnet.mak;
 	cd mongo; make SOLUTION_DIR=$(CUR_DIR) -f mongo.mak;
 	cd lhttp; make SOLUTION_DIR=$(CUR_DIR) -f lhttp.mak;
+	cd lcurl; make SOLUTION_DIR=$(CUR_DIR) -f lcurl.mak;
 	cd lcrypt; make SOLUTION_DIR=$(CUR_DIR) -f lcrypt.mak;
 	cd lcjson; make SOLUTION_DIR=$(CUR_DIR) -f lcjson.mak;
 	cd ltimer; make SOLUTION_DIR=$(CUR_DIR) -f ltimer.mak;
