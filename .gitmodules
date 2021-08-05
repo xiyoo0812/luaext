@@ -20,3 +20,6 @@
 [submodule "lcurl"]
 	path = lcurl
 	url = https://github.com/xiyoo0812/lcurl.git
+[submodule "ltimer"]
+	path = ltimer
+	url = https://github.com/xiyoo0812/ltimer.git
