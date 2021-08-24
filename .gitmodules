@@ -23,3 +23,6 @@
 [submodule "ltimer"]
 	path = ltimer
 	url = https://github.com/xiyoo0812/ltimer.git
+[submodule "lbuffer"]
+	path = lbuffer
+	url = https://github.com/xiyoo0812/lbuffer.git

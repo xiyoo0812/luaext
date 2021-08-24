@@ -30,6 +30,7 @@ ext:
 	cd lhttp; make SOLUTION_DIR=$(CUR_DIR) -f lhttp.mak;
 	cd lcurl; make SOLUTION_DIR=$(CUR_DIR) -f lcurl.mak;
 	cd lcrypt; make SOLUTION_DIR=$(CUR_DIR) -f lcrypt.mak;
+	cd lbuffer; make SOLUTION_DIR=$(CUR_DIR) -f lbuffer.mak;
 	cd lcjson; make SOLUTION_DIR=$(CUR_DIR) -f lcjson.mak;
 	cd ltimer; make SOLUTION_DIR=$(CUR_DIR) -f ltimer.mak;
 	cd lualog; make SOLUTION_DIR=$(CUR_DIR) -f lualog.mak;
