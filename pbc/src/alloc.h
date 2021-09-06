@@ -17,16 +17,24 @@ void* _pbcH_alloc(struct heap *, int size);
 
 #define HMALLOC(size) ((h) ? _pbcH_alloc(h, size) : _pbcM_malloc(size))
 
+#ifdef malloc
+#undef malloc
+#endif
+
+#ifdef free
+#undef free
+#endif
+
+#ifdef realloc
+#undef realloc
+#endif
+
 #define malloc _pbcM_malloc
 #define free _pbcM_free
 #define realloc _pbcM_realloc
 #define memory _pbcM_memory
 
-#ifdef _WIN32
 
-#include <malloc.h>
-
-#endif
 
 #ifdef _MSC_VER
 

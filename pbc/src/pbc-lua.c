@@ -14,9 +14,8 @@ extern "C" {
 #include <malloc.h>
 #endif
 
-#ifndef _MSC_VER
 #include <stdbool.h>
-#else
+#ifdef _MSC_VER
 #define alloca _alloca
 #endif
 
@@ -870,7 +869,7 @@ _add_rmessage(lua_State *L) {
 
 
 #ifdef _MSC_VER
-#define LPBC_API extern "C" _declspec(dllexport)
+#define LPBC_API  _declspec(dllexport)
 #else
 #define LPBC_API 
 #endif
