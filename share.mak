@@ -27,11 +27,13 @@ endif
 
 ifneq ($(PROJECT_NAME), mimalloc)
 #是否开启mimalloc
-#MIMALLOC = 1
+MIMALLOC = 1
 ifdef MIMALLOC
-MIMALLOCDIR = ../../
+ifndef MIMALLOC_DIR
+MIMALLOC_DIR = ../../
+endif
 MALLOCLIBS = -lmimalloc
-MALLOCFLAGS = -I$(MIMALLOCDIR) -include extend.h
+MALLOCFLAGS = -I$(MIMALLOC_DIR) -include extend.h
 endif
 endif
 
