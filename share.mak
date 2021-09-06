@@ -32,7 +32,7 @@ ifdef MIMALLOC
 ifndef MIMALLOC_DIR
 MIMALLOC_DIR = ../../
 endif
-MALLOCLIBS = -lmimalloc
+MALLOCLIBS = -lmimalloc -lpthread
 MALLOCFLAGS = -I$(MIMALLOC_DIR) -include extend.h
 endif
 endif
