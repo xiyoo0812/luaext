@@ -2,15 +2,17 @@
 #定义基础的编译选项
 CC= gcc
 CX= c++
-CFLAGS= -g -O2 -Wall -Wno-deprecated -Wextra $(SYSCFLAGS) $(MYCFLAGS)
-CXXFLAGS= -g -O2 -Wall -Wno-deprecated -Wextra $(SYSCFLAGS) $(MYCFLAGS)
+CFLAGS= -g -O2 -Wall -Wno-deprecated -Wextra $(MALLOCFLAGS) $(SYSCFLAGS) $(MYCFLAGS)
+CXXFLAGS= -g -O2 -Wall -Wno-deprecated -Wextra $(MALLOCFLAGS) $(SYSCFLAGS) $(MYCFLAGS)
 LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
-LIBS= -lm $(MYLIBS) $(SYSLIBS) 
+LIBS= -lm $(MALLOCLIBS) $(MYLIBS) $(SYSLIBS) 
 
 #定义系统的编译选项
 SYSCFLAGS= -Wno-unknown-pragmas
 SYSLDFLAGS=
 SYSLIBS=-ldl
+MALLOCLIBS=
+MALLOCFLAGS=
 
 #自定义的编译选项
 ifndef MYCFLAGS
@@ -21,6 +23,14 @@ MYLDFLAGS=
 endif
 ifndef MYLIBS
 MYLIBS=
+endif
+
+#是否开启mimalloc
+#MIMALLOC = 1
+MIMALLOCDIR = ../../
+ifdef MIMALLOC
+MALLOCLIBS = -lmimalloc
+MALLOCFLAGS = -I$(MALLOCFLAGS) -include extend.h
 endif
 
 #编译器版本
