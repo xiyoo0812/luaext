@@ -25,12 +25,14 @@ ifndef MYLIBS
 MYLIBS=
 endif
 
+ifneq ($(PROJECT_NAME), mimalloc)
 #是否开启mimalloc
 #MIMALLOC = 1
-MIMALLOCDIR = ../../
 ifdef MIMALLOC
+MIMALLOCDIR = ../../
 MALLOCLIBS = -lmimalloc
-MALLOCFLAGS = -I$(MALLOCFLAGS) -include extend.h
+MALLOCFLAGS = -I$(MIMALLOCDIR) -include extend.h
+endif
 endif
 
 #编译器版本
