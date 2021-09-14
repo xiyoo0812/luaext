@@ -11,25 +11,29 @@ UNAME_S = $(shell uname -s)
 .PHONY: clean all target pre_build post_build
 all : pre_build target post_build
 
-#FLAG
+#CFLAG
 MYCFLAGS =
 
 #需要定义的FLAG
 
+#c标准库版本
+#gnu99/gnu11/gnu17
+STDC = -std=gnu99
 
-#标准库版本
-#gnu99/c++11/c++14/c++17/c++20
-MYCFLAGS += -std=gnu99
+#c++标准库版本
+#c++11/c++14/c++17/c++20
+STDCPP = -std=c++14
 
 #需要的include目录
 MYCFLAGS += -I./lua
 MYCFLAGS += -I./luac
 
 #需要定义的选项
-LDFLAGS =
-LDFLAGS += -DMAKE_LUAC
+MYCFLAGS += -DMAKE_LUAC
 
-#需要附件link库目录
+#LDFLAGS
+LDFLAGS =
+
 
 #源文件路径
 SRC_DIR = lua
@@ -49,8 +53,8 @@ LIBS += -lm -ldl -lstdc++
 #定义基础的编译选项
 CC = gcc
 CX = c++
-CFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(MYCFLAGS)
-CXXFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(MYCFLAGS)
+CFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(STDC) $(MYCFLAGS)
+CXXFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(STDCPP) $(MYCFLAGS)
 
 #项目目录
 ifndef SOLUTION_DIR
@@ -75,31 +79,24 @@ MOBJS = $(patsubst %.m, $(INT_DIR)/%.o, $(COBJS))
 CCOBJS = $(patsubst %.cc, $(INT_DIR)/%.o, $(MOBJS))
 OBJS = $(patsubst %.cpp, $(INT_DIR)/%.o, $(CCOBJS))
 
-$(TARGET_STATIC) : $(OBJS)
-	ar rcs $@ $(OBJS)
-	ranlib $@
-
-$(TARGET_DYNAMIC) : $(OBJS)
-	$(CC) -o $@ -shared $(OBJS) $(LDFLAGS) $(LIBS) 
-
-$(TARGET_EXECUTE) : $(OBJS)
-	$(CC) -o $@  $(OBJS) $(LDFLAGS) $(LIBS) 
-
 # 编译所有源文件
-$(INT_DIR)/%.o : $(SRC_DIR)/%.cpp
-	$(CX) $(CXXFLAGS) -c $< -o $@
-$(INT_DIR)/%.o : $(SRC_DIR)/%.cc
-	$(CX) $(CXXFLAGS) -c $< -o $@
 $(INT_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 $(INT_DIR)/%.o : $(SRC_DIR)/%.m
 	$(CC) $(CFLAGS) -c $< -o $@
+$(INT_DIR)/%.o : $(SRC_DIR)/%.cc
+	$(CX) $(CXXFLAGS) -c $< -o $@
+$(INT_DIR)/%.o : $(SRC_DIR)/%.cpp
+	$(CX) $(CXXFLAGS) -c $< -o $@
+
+$(TARGET_EXECUTE) : $(OBJS)
+	$(CC) -o $@  $(OBJS) $(LDFLAGS) $(LIBS)
 
 #target伪目标
 target : $(TARGET_EXECUTE)
 
 #clean伪目标
-clean : 
+clean :
 	rm -rf $(INT_DIR)
 
 #预编译
