@@ -4,7 +4,7 @@ PROJECT_NAME = "lua"
 --目标名字
 TARGET_NAME = "lua"
 
---工程类型：static/dynamic/exe
+----工程类型: static/dynamic/exe
 PROJECT_TYPE = "exe"
 
 --需要的include目录
@@ -17,25 +17,14 @@ DEFINES = {
 	"MAKE_LUA"
 }
 
---LINUX需要定义的选项
-LINUX_DEFINES = {
-	"LUA_USE_LINUX"
-}
-
---DARWIN需要定义的选项
-DARWIN_DEFINES = {
-	"LUA_USE_MACOSX"
-}
-
---WIN32需要定义的选项
-WIN32_DEFINES = {
-	"LUA_USE_WIN32"
-}
-
 --源文件路径
-SRC_DIR = "./lua"
+SRC_DIR = "lua"
 
 --目标文件，可以在这里定义，如果没有定义，share.mak会自动生成
 OBJS = {
 	"onelua.c"
 }
+
+--分组定义
+GROUP = "lua"
+
