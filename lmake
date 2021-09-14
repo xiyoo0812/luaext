@@ -5,3 +5,6 @@ SOLUTION = "luaext"
 
 --lmake目录
 LMAKE_DIR = "../lmake"
+
+--mimalloc
+USE_MIMALLOC = false

@@ -25,6 +25,11 @@ OBJS = {
 	"onelua.c"
 }
 
+--依赖项目
+DEPS = {
+	"lualib"
+}
+
 --分组定义
 GROUP = "lua"
 
