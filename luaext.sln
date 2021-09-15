@@ -8,10 +8,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lua", "lua", "{EEE587B4-691E-274F-5E0D-3D4754F2B4B6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lualib", "lua/lualib.vcxproj", "{B0AEF51E-FBD8-3472-DB40-2C819DE2E5DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6805C141-3788-A994-7DCA-ADD6574D1386} = {6805C141-3788-A994-7DCA-ADD6574D1386}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luac", "lua/luac.vcxproj", "{1BD1853E-C5E4-992D-7266-AA4AA72600AB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B0AEF51E-FBD8-3472-DB40-2C819DE2E5DF} = {B0AEF51E-FBD8-3472-DB40-2C819DE2E5DF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "lua/lua.vcxproj", "{F8DBBBDB-3B80-B4F1-70A8-272978F579EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B0AEF51E-FBD8-3472-DB40-2C819DE2E5DF} = {B0AEF51E-FBD8-3472-DB40-2C819DE2E5DF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "luaext", "luaext", "{DEDA8889-2128-69C7-B2CC-3996BC8EB907}"
 EndProject

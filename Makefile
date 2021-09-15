@@ -19,7 +19,6 @@ lua:
 	cd lua; make SOLUTION_DIR=$(CUR_DIR) -f luac.mak;
 	cd lua; make SOLUTION_DIR=$(CUR_DIR) -f lua.mak;
 
-
 luaext:
 	cd ltimer; make SOLUTION_DIR=$(CUR_DIR) -f ltimer.mak;
 	cd bson; make SOLUTION_DIR=$(CUR_DIR) -f bson.mak;
@@ -35,6 +34,4 @@ luaext:
 	cd lfs; make SOLUTION_DIR=$(CUR_DIR) -f lfs.mak;
 	cd lcurl; make SOLUTION_DIR=$(CUR_DIR) -f lcurl.mak;
 	cd pbc; make SOLUTION_DIR=$(CUR_DIR) -f pbc.mak;
-
-
 
