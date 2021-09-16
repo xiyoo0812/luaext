@@ -3,7 +3,7 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src/lua-mongo.c">
+    <ClCompile Include="src\lua-mongo.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

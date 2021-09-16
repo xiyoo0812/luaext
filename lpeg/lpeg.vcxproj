@@ -7,19 +7,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src/lpcap.h" />
-    <ClInclude Include="src/lpcode.h" />
-    <ClInclude Include="src/lpprint.h" />
-    <ClInclude Include="src/lptree.h" />
-    <ClInclude Include="src/lptypes.h" />
-    <ClInclude Include="src/lpvm.h" />
+    <ClInclude Include="src\lpcap.h" />
+    <ClInclude Include="src\lpcode.h" />
+    <ClInclude Include="src\lpprint.h" />
+    <ClInclude Include="src\lptree.h" />
+    <ClInclude Include="src\lptypes.h" />
+    <ClInclude Include="src\lpvm.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src/lpcap.c" />
-    <ClCompile Include="src/lpcode.c" />
-    <ClCompile Include="src/lpprint.c" />
-    <ClCompile Include="src/lptree.c" />
-    <ClCompile Include="src/lpvm.c" />
+    <ClCompile Include="src\lpcap.c" />
+    <ClCompile Include="src\lpcode.c" />
+    <ClCompile Include="src\lpprint.c" />
+    <ClCompile Include="src\lptree.c" />
+    <ClCompile Include="src\lpvm.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B27DF8E-84AA-6ABA-86EE-ACB5DF2358EE}</ProjectGuid>

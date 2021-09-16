@@ -25,13 +25,13 @@ luaext:
 	cd luaxlsx; make SOLUTION_DIR=$(CUR_DIR) -f luaxlsx.mak;
 	cd lualog; make SOLUTION_DIR=$(CUR_DIR) -f lualog.mak;
 	cd mongo; make SOLUTION_DIR=$(CUR_DIR) -f mongo.mak;
-	cd lpeg; make SOLUTION_DIR=$(CUR_DIR) -f lpeg.mak;
-	cd lhttp; make SOLUTION_DIR=$(CUR_DIR) -f lhttp.mak;
+	cd lstdfs; make SOLUTION_DIR=$(CUR_DIR) -f lstdfs.mak;
+	cd lnet; make SOLUTION_DIR=$(CUR_DIR) -f lnet.mak;
 	cd lcjson; make SOLUTION_DIR=$(CUR_DIR) -f lcjson.mak;
 	cd lbuffer; make SOLUTION_DIR=$(CUR_DIR) -f lbuffer.mak;
-	cd lnet; make SOLUTION_DIR=$(CUR_DIR) -f lnet.mak;
+	cd lpeg; make SOLUTION_DIR=$(CUR_DIR) -f lpeg.mak;
 	cd lcrypt; make SOLUTION_DIR=$(CUR_DIR) -f lcrypt.mak;
-	cd lfs; make SOLUTION_DIR=$(CUR_DIR) -f lfs.mak;
+	cd lhttp; make SOLUTION_DIR=$(CUR_DIR) -f lhttp.mak;
 	cd lcurl; make SOLUTION_DIR=$(CUR_DIR) -f lcurl.mak;
 	cd pbc; make SOLUTION_DIR=$(CUR_DIR) -f pbc.mak;
 

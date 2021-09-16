@@ -3,7 +3,7 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src/bson.c">
+    <ClCompile Include="src\bson.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

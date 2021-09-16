@@ -7,15 +7,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src/poll.h" />
-    <ClInclude Include="src/socket.h" />
+    <ClInclude Include="src\poll.h" />
+    <ClInclude Include="src\socket.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src/lnet.c" />
-    <ClCompile Include="src/poll_linux.c" />
-    <ClCompile Include="src/poll_macos.c" />
-    <ClCompile Include="src/poll_win32.c" />
-    <ClCompile Include="src/socket.c" />
+    <ClCompile Include="src\lnet.c" />
+    <ClCompile Include="src\poll_linux.c" />
+    <ClCompile Include="src\poll_macos.c" />
+    <ClCompile Include="src\poll_win32.c" />
+    <ClCompile Include="src\socket.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7E21C869-B250-E8AD-6EE4-BEF80E9F21B0}</ProjectGuid>

@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="src/lpcap.h">
+    <ClInclude Include="src\lpcap.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="src/lpcode.h">
+    <ClInclude Include="src\lpcode.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="src/lpprint.h">
+    <ClInclude Include="src\lpprint.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="src/lptree.h">
+    <ClInclude Include="src\lptree.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="src/lptypes.h">
+    <ClInclude Include="src\lptypes.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="src/lpvm.h">
+    <ClInclude Include="src\lpvm.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src/lpcap.c">
+    <ClCompile Include="src\lpcap.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src/lpcode.c">
+    <ClCompile Include="src\lpcode.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src/lpprint.c">
+    <ClCompile Include="src\lpprint.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src/lptree.c">
+    <ClCompile Include="src\lptree.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src/lpvm.c">
+    <ClCompile Include="src\lpvm.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
