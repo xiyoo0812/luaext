@@ -5,33 +5,33 @@ empty:
 
 CUR_DIR = $(shell pwd)/
 
-.PHONY: clean all server lua luaext 
+.PHONY: clean all server  lua luaext
 
 all: clean server 
 
-server: lua luaext 
+server:  lua luaext
 
 clean:
 	rm -rf temp;
 
 lua:
 	cd lua; make SOLUTION_DIR=$(CUR_DIR) -f lualib.mak;
-	cd lua; make SOLUTION_DIR=$(CUR_DIR) -f luac.mak;
 	cd lua; make SOLUTION_DIR=$(CUR_DIR) -f lua.mak;
+	cd lua; make SOLUTION_DIR=$(CUR_DIR) -f luac.mak;
 
 luaext:
-	cd ltimer; make SOLUTION_DIR=$(CUR_DIR) -f ltimer.mak;
 	cd bson; make SOLUTION_DIR=$(CUR_DIR) -f bson.mak;
-	cd luaxlsx; make SOLUTION_DIR=$(CUR_DIR) -f luaxlsx.mak;
-	cd lualog; make SOLUTION_DIR=$(CUR_DIR) -f lualog.mak;
-	cd mongo; make SOLUTION_DIR=$(CUR_DIR) -f mongo.mak;
-	cd lstdfs; make SOLUTION_DIR=$(CUR_DIR) -f lstdfs.mak;
-	cd lnet; make SOLUTION_DIR=$(CUR_DIR) -f lnet.mak;
-	cd lcjson; make SOLUTION_DIR=$(CUR_DIR) -f lcjson.mak;
 	cd lbuffer; make SOLUTION_DIR=$(CUR_DIR) -f lbuffer.mak;
-	cd lpeg; make SOLUTION_DIR=$(CUR_DIR) -f lpeg.mak;
+	cd lcjson; make SOLUTION_DIR=$(CUR_DIR) -f lcjson.mak;
 	cd lcrypt; make SOLUTION_DIR=$(CUR_DIR) -f lcrypt.mak;
-	cd lhttp; make SOLUTION_DIR=$(CUR_DIR) -f lhttp.mak;
 	cd lcurl; make SOLUTION_DIR=$(CUR_DIR) -f lcurl.mak;
+	cd lhttp; make SOLUTION_DIR=$(CUR_DIR) -f lhttp.mak;
+	cd lnet; make SOLUTION_DIR=$(CUR_DIR) -f lnet.mak;
+	cd lpeg; make SOLUTION_DIR=$(CUR_DIR) -f lpeg.mak;
+	cd lstdfs; make SOLUTION_DIR=$(CUR_DIR) -f lstdfs.mak;
+	cd ltimer; make SOLUTION_DIR=$(CUR_DIR) -f ltimer.mak;
+	cd lualog; make SOLUTION_DIR=$(CUR_DIR) -f lualog.mak;
+	cd luaxlsx; make SOLUTION_DIR=$(CUR_DIR) -f luaxlsx.mak;
+	cd mongo; make SOLUTION_DIR=$(CUR_DIR) -f mongo.mak;
 	cd pbc; make SOLUTION_DIR=$(CUR_DIR) -f pbc.mak;
 
